@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/smichaele/Dropbox/eclipse-java-workspace/stdlib.jar">
+	<classpathentry kind="lib" path="/home/smichaele/Downloads/jar_files (2)/stdlib-1.0.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

@@ -7,9 +7,9 @@ public class Rectangle {
     double height; //height of the rectangle
     String color; //represents the color of the rectangle
     boolean filled; //is true if rectangle is filled, false if it is not
-    
+    // ADDED
     static String[] valid_colors = {"black", "red", "green", "blue"};
-
+    // MODIFIED
     public Rectangle(double x, double y, double width, double height, String color, boolean filled) { //constructor 
     	
     	if (isValid (x, y, width, height)) {
@@ -25,7 +25,14 @@ public class Rectangle {
     		this.width = 0.1;
     		this.height = 0.1;
     		this.filled = false;
-    	}               
+    	}  
+    	
+    	if (validColor(color)) {
+    		this.color = color;
+    		
+    	} else {
+    		this.color = "red";
+    	}
     }
 
     
@@ -48,12 +55,12 @@ public class Rectangle {
         return this.height;
     }
     
-    
+    // MODIFIED
     public String getColor() { //returns the color of the rectangle
         return this.color;
     }
     
-
+    // ADDED
     public boolean isFilled() {
     	return this.filled;
     }
@@ -82,7 +89,7 @@ public class Rectangle {
         this.color = c;
     }
     
-    
+    // MODIFIED
     public void setFill (boolean f) { //sets the filled variable to f
         this.filled = f;
     }
