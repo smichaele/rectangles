@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+
 public class RectangleTester {
+	
     public static void main(String[]args) { //prints all rectangles and then prints the left-most rectangle
 
         ArrayList<Rectangle> rectangleList = new ArrayList<Rectangle>(); //creates 10 random rectangles and add them to an array list
