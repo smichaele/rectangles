@@ -7,9 +7,9 @@ public class Rectangle {
     double height; //height of the rectangle
     String color; //represents the color of the rectangle
     boolean filled; //is true if rectangle is filled, false if it is not
-    // ADDED
+
     static String[] valid_colors = {"black", "red", "green", "blue"};
-    // MODIFIED
+
     public Rectangle(double x, double y, double width, double height, String color, boolean filled) { //constructor 
     	
     	if (isValid (x, y, width, height)) {
@@ -55,12 +55,12 @@ public class Rectangle {
         return this.height;
     }
     
-    // MODIFIED
+
     public String getColor() { //returns the color of the rectangle
         return this.color;
     }
     
-    // ADDED
+
     public boolean isFilled() {
     	return this.filled;
     }
@@ -89,7 +89,7 @@ public class Rectangle {
         this.color = c;
     }
     
-    // MODIFIED
+
     public void setFill (boolean f) { //sets the filled variable to f
         this.filled = f;
     }
@@ -99,41 +99,102 @@ public class Rectangle {
         return "X: " + x + " Y: " + y + " Width: " + width + " Height: " + height + " Color: " + color + " Filled: " + filled;
     }
 
-    // TODO public boolean equals (Rectangle rect)
+
     public boolean equals (Rectangle rect) {
+    	
+    	if (this.x == rect.x && this.y == rect.y 
+    			&& this.width == rect.width && this.height == rect.height 
+    			&& this.color == rect.color && this.filled == rect.filled) {
+    		return true;
+    	}
+    	
     	return false;
     }
     
-    // TODO public double computePerimeter()
     public double computePerimeter() {
-    	double perimeter = 0;
-    	return perimeter;
+        double perimeter = 2 * (height * width);
+        return perimeter;
     }
-    
-    // TODO public double computeArea()
+
     public double computeArea() {
-    	double area = 0;
-    	return area;
+        double area = height * width;
+        return area;
     }
     
-    // TODO public boolean containsPoint(double x, double y)
+    
     public boolean containsPoint(double x, double y) {
+    	
+    	if (x > this.x - (this.width / 2) && x < this.x + (this.width / 2)
+    		&& y > this.y - (this.height / 2) && y < this.y + (this.height / 2)) {
+    		return true;
+    	}
     	return false;
     }
     
-    // TODO public boolean containsRectangle(Rectangle rect)
+    
     public boolean containsRectangle(Rectangle rect) {
+    	
+    	if (this.x + (this.width / 2) > rect.x + (rect.width / 2) && this.x - (this.width / 2) < rect.x - (rect.width / 2)
+    			&& this.y + (this.height / 2) > rect.y + (rect.height / 2) && this.y - (this.height / 2) < rect.y - (rect.height / 2)) {
+    		return true;
+    	}
     	return false;
     }
     
-    // TODO public boolean intersects(Rectangle rect)
+    
     public boolean intersects(Rectangle rect) {
-    	return false;
+    	
+    	double rectATopEdge = this.y + (0.5 * this.height);
+    	double rectABottomEdge = this.y - (0.5 * this.height);
+    	double rectALeftEdge = this.x - (0.5 * this.width);
+    	double rectARightEdge = this.x + (0.5 * this.width);
+    	double rectBTopEdge = rect.y + (0.5 * rect.height);
+    	double rectBBottomEdge = rect.y - (0.5 * rect.height);
+    	double rectBLeftEdge = rect.x - (0.5 * rect.width);
+    	double rectBRightEdge = rect.x + (0.5 * rect.width);
+    	
+    	if (rectALeftEdge > rectBRightEdge || rectARightEdge < rectBLeftEdge
+    			|| rectABottomEdge > rectBTopEdge || rectATopEdge < rectBBottomEdge) {
+    				return false;
+    			}
+    	
+    	return true;
+    }
+    
+    
+    public void draw() {
+    	
+    	switch(this.color) {
+		
+			case("black"):
+				StdDraw.setPenColor(StdDraw.BLACK);
+				break;
+				
+			case("blue"):
+				StdDraw.setPenColor(StdDraw.BLUE);
+				break;
+				
+			case("green"):
+				StdDraw.setPenColor(StdDraw.GREEN);
+				break;
+				
+			default:
+				StdDraw.setPenColor(StdDraw.RED);
+				break;
+		}
+	
+    	
+    	if (this.filled) {
+    		StdDraw.filledRectangle(x, y, width / 2, height / 2);
+    	} else {
+    		StdDraw.rectangle(x, y, width / 2, height / 2);
+    	}
+    	
     }
     
     
     public static boolean isValid (double x, double y, double w, double h) { //returns true if the rectangle with the lower left vertex at (x, y), width w and height h is valid
-        if ((x >= 0 && x<= 1) && (y >= 0 && y <= 1) && w > 0 && h > 0 ) {
+        if ((x >= 0 && x<= 1) && (y >= 0 && y <= 1) && (w > 0 && w <= 1) && (h > 0 && h <=1)) {
             return true;
         }
 
